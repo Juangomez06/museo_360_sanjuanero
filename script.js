@@ -21,7 +21,7 @@ const viewer = pannellum.viewer("panorama", {
   scenes: {
     pano1: {
       title: "Entrada museo San Juanero",
-      panorama: "/escenas/entrada.jpeg",
+      panorama: "/assets/escenas/entrada.jpeg",
       yaw: 0,
       pitch: 0,
       minHfov: 40,
@@ -34,7 +34,7 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "/flechas/arriba.png",
+            icono: "/assets/flechas/arriba.png",
             escenaDestino: "pano2",
           },
         },
@@ -48,14 +48,14 @@ const viewer = pannellum.viewer("panorama", {
             showModal(
               "UN VIAJE AL CORAZÓN DEL FOLCLOR OPITA",
               "<strong> Ubicacion: Biblioteca Departamental Olegario Rivera 2do. Piso </strong> <br><br> Este museo celebra la historia y el significado del Sanjuanero Huilense, danza símbolo del Huila. A través de trajes, instrumentos y memorias del Festival del Bambuco, conocerás la riqueza cultural que nos representa como región. <br><br> <strong><h3>¡BIENVENIDOS!</h3></strong>",
-              "/escenas/entrada.jpeg"
+              "/assets/escenas/entrada.jpeg"
             ),
         },
       ],
     },
     pano2: {
       title: "Pasillo museo San Juanero",
-      panorama: "/escenas/pasillo1.jpg",
+      panorama: "/assets/escenas/pasillo1.jpg",
       yaw: 0,
       pitch: 0,
       minHfov: 40,
@@ -68,7 +68,7 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "/flechas/arriba.png",
+            icono: "/assets/flechas/arriba.png",
             escenaDestino: "pano3",
           },
         },
@@ -78,7 +78,7 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "/flechas/izquierda.png",
+            icono: "/assets/flechas/izquierda.png",
             escenaDestino: "pano1",
           },
         },
@@ -92,14 +92,14 @@ const viewer = pannellum.viewer("panorama", {
             showModal(
               "SANJUANERO HUILENSE <br> ¡Patrimonio de todos!",
               "Creado por la Gobernación del Huila y reinaugurado en 2018, este museo nace como un homenaje al Sanjuanero Huilense y al Festival Folclórico, con el propósito de preservar y difundir nuestra identidad cultural. ",
-              "/escenas/pasillo1.jpg"
+              "/assets/escenas/pasillo1.jpg"
             ),
         },
       ],
     },
     pano3: {
       title: "Pasillo museo San Juanero",
-      panorama: "/escenas/salon.jpg",
+      panorama: "/assets/escenas/salon.jpg",
       yaw: 0,
       pitch: 0,
       minHfov: 30,
@@ -112,7 +112,7 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "/flechas/izquierda.png",
+            icono: "/assets/flechas/izquierda.png",
             escenaDestino: "pano4",
           },
         },
@@ -122,7 +122,7 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "/flechas/derecha.png",
+            icono: "/assets/flechas/derecha.png",
             escenaDestino: "pano5",
           },
         },
@@ -132,7 +132,7 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "/flechas/abajo.png",
+            icono: "/assets/flechas/abajo.png",
             escenaDestino: "pano2",
           },
         },
@@ -142,7 +142,7 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "/flechas/arriba.png",
+            icono: "/assets/flechas/arriba.png",
             escenaDestino: "pano6",
           },
         },
@@ -150,7 +150,7 @@ const viewer = pannellum.viewer("panorama", {
     },
     pano4: {
       title: "Pasillo museo San Juanero",
-      panorama: "/escenas/musica.jpeg",
+      panorama: "/assets/escenas/musica.jpeg",
       yaw: 0,
       pitch: 0,
       minHfov: 30,
@@ -163,7 +163,7 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "/flechas/derecha.png",
+            icono: "/assets/flechas/derecha.png",
             escenaDestino: "pano5",
           },
         },
@@ -173,7 +173,7 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "/flechas/izquierda.png",
+            icono: "/assets/flechas/izquierda.png",
             escenaDestino: "pano3",
           },
         },
@@ -187,7 +187,7 @@ const viewer = pannellum.viewer("panorama", {
             showModal(
               "Inés García de Durán y Jorge Villamil Cordovez",
               "Inés García de Durán, folclorista huilense, fue la creadora de la coreografía del Sanjuanero Huilense, definiendo sus pasos y figuras tradicionales. <br><br>  Jorge Villamil Cordovez, médico y compositor, contribuyó en su estructuración y dedicó gran parte de su obra a exaltar la cultura opita.  <br><br> Ambos dejaron un legado invaluable que hoy es símbolo de identidad para el pueblo Huilense.",
-              "/modal/guitarras.jpeg"
+              "/assets/modal/guitarras.jpeg"
             ),
         },
         {
@@ -200,7 +200,7 @@ const viewer = pannellum.viewer("panorama", {
             showModal(
               "Instrumentos Típicos del Huila",
               "La cucamba es el conjunto musical tradicional del folclor huilense. Se compone principalmente de instrumentos de percusión como la puerca, el chucho, el carángano, la esterilla, el cien pies y la tambora. <br> <br> Estos se complementan con instrumentos de cuerda como la guitarra, el requinto y el tiple, que aportan la melodía. Aunque algunos han sido reemplazados con el tiempo, siguen siendo el alma sonora de las comparsas de San Juan y San Pedro.",
-              "/modal/instrumentos.jpeg"
+              "/assets/modal/instrumentos.jpeg"
             ),
         },
         {
@@ -213,14 +213,14 @@ const viewer = pannellum.viewer("panorama", {
             showModal(
               "Afiches del festival ",
               "Los afiches promociones resaltar la diversidad de manifestaciones culturales que se expresan durante el festival, para que propios y foráneos disfruten las mejores fiestas folclóricas del país.",
-              "/modal/mural_convocatoria.jpeg"
+              "/assets/modal/mural_convocatoria.jpeg"
             ),
         },
       ],
     },
     pano5: {
       title: "Pasillo museo San Juanero",
-      panorama: "/escenas/trajes.jpeg",
+      panorama: "/assets/escenas/trajes.jpeg",
       yaw: 0,
       pitch: 0,
       minHfov: 30,
@@ -233,7 +233,7 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "/flechas/derecha.png",
+            icono: "/assets/flechas/derecha.png",
             escenaDestino: "pano6",
           },
         },
@@ -243,7 +243,7 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "/flechas/izquierda.png",
+            icono: "/assets/flechas/izquierda.png",
             escenaDestino: "pano3",
           },
         },
@@ -257,7 +257,7 @@ const viewer = pannellum.viewer("panorama", {
             showModal(
               "Década de 1960",
               "El traje se formaliza como símbolo del folclor huilense. Se caracteriza por su sencillez: blusa blanca con encajes y falda de flores, inspirada en la mujer campesina. El traje masculino incluye sombrero y pantalón blanco.",
-              "/modal/traje1.jpeg"
+              "/assets/modal/traje1.jpeg"
             ),
         },
         {
@@ -270,7 +270,7 @@ const viewer = pannellum.viewer("panorama", {
             showModal(
               "Primera Pareja",
               "La primera pareja que bailó la coreografía creada por Inés García Durán, fue Tony Arbeláez y Sonia Cerquera en el año 1963, con la asesoría de Sergio Durán y Jorge Villamil Cordovez",
-              "/modal/traje2.jpeg"
+              "/assets/modal/traje2.jpeg"
             ),
         },
         {
@@ -283,7 +283,7 @@ const viewer = pannellum.viewer("panorama", {
             showModal(
               "Década de 1980 - 1990",
               "Surgen bordados más elaborados, se introducen telas brillantes y el traje gana fuerza como símbolo turístico. ",
-              "/modal/traje3.jpeg"
+              "/assets/modal/traje3.jpeg"
             ),
         },
         {
@@ -296,14 +296,14 @@ const viewer = pannellum.viewer("panorama", {
             showModal(
               "Década del 2010",
               "Se da mayor protagonismo al bordado artesanal. <br><br> Época contemporánea: Se mantienen los elementos tradicionales, pero con innovaciones en materiales y técnicas.",
-              "/modal/traje4.jpeg"
+              "/assets/modal/traje4.jpeg"
             ),
         },
       ],
     },
     pano6: {
       title: "Pasillo museo San Juanero",
-      panorama: "/escenas/pasos.jpeg",
+      panorama: "/assets/escenas/pasos.jpeg",
       yaw: 0,
       pitch: 0,
       minHfov: 30,
@@ -316,7 +316,7 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "/flechas/derecha.png",
+            icono: "/assets/flechas/derecha.png",
             escenaDestino: "pano7",
           },
         },
@@ -326,7 +326,7 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "/flechas/izquierda.png",
+            icono: "/assets/flechas/izquierda.png",
             escenaDestino: "pano3",
           },
         },
@@ -340,7 +340,7 @@ const viewer = pannellum.viewer("panorama", {
             showModal(
               "Pasos 1",
               "Invitación",
-              "/modal/paso1.jpg"
+              "/assets/modal/paso1.jpg"
             ),
         },
         {
@@ -353,7 +353,7 @@ const viewer = pannellum.viewer("panorama", {
             showModal(
               "Pasos 2",
               "Ochos ",
-              "/modal/paso2.jpg"
+              "/assets/modal/paso2.jpg"
             ),
         },
         {
@@ -366,7 +366,7 @@ const viewer = pannellum.viewer("panorama", {
             showModal(
               "Pasos 3",
               "Coqueteo ",
-              "/modal/paso3.jpg"
+              "/assets/modal/paso3.jpg"
             ),
         },
         {
@@ -379,7 +379,7 @@ const viewer = pannellum.viewer("panorama", {
             showModal(
               "Pasos 4",
               "Arrodillada ",
-              "/modal/paso4.png"
+              "/assets/modal/paso4.png"
             ),
         },
         {
@@ -392,7 +392,7 @@ const viewer = pannellum.viewer("panorama", {
             showModal(
               "Pasos 5",
               "Levantada ",
-              "/modal/paso5.png"
+              "/assets/modal/paso5.png"
             ),
         },
         {
@@ -405,7 +405,7 @@ const viewer = pannellum.viewer("panorama", {
             showModal(
               "Pasos 6",
               "Arrastrada del ala ",
-              "/modal/paso6.jpg"
+              "/assets/modal/paso6.jpg"
             ),
         },
         {
@@ -418,7 +418,7 @@ const viewer = pannellum.viewer("panorama", {
             showModal(
               "Pasos 7",
               "Secreto ",
-              "/modal/paso7.png"
+              "/assets/modal/paso7.png"
             ),
         },
         {
@@ -431,7 +431,7 @@ const viewer = pannellum.viewer("panorama", {
             showModal(
               "Pasos 8",
               "Salida",
-              "/modal/paso8.png"
+              "/assets/modal/paso8.png"
             ),
         },
         {
@@ -444,14 +444,14 @@ const viewer = pannellum.viewer("panorama", {
             showModal(
               "Esculturas Museo Sanjuanero Huilense",
               "Para la coreografía, se retomo el bambuco tradicional y se convirtió en una coreografía de tres pasos y ocho figuras. El baile del Sanjuanero huilense es la conquista que se logra a través de un suave pero persistente galanteo, que se acompaña con el rabo' e gallo, el sombrero y decididos pasos y figuras.",
-              "/escenas/pasos.jpeg"
+              "/assets/escenas/pasos.jpeg"
             ),
         },
       ],
     },
     pano7: {
       title: "Pasillo museo San Juanero",
-      panorama: "/escenas/pasillo5.jpeg",
+      panorama: "/assets/escenas/pasillo5.jpeg",
       yaw: 0,
       pitch: 0,
       minHfov: 130,
@@ -464,7 +464,7 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "/flechas/derecha.png",
+            icono: "/assets/flechas/derecha.png",
             escenaDestino: "pano8",
           },
         },
@@ -474,7 +474,7 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "/flechas/izquierda.png",
+            icono: "/assets/flechas/izquierda.png",
             escenaDestino: "pano6",
           },
         },
@@ -488,14 +488,14 @@ const viewer = pannellum.viewer("panorama", {
             showModal(
               "Escenarios del Festival",
               "En sus inicios, los desfiles y presentaciones del Festival Folclórico del Huila se realizaban en las calles de Neiva. Con el tiempo, se fueron consolidando espacios como la Concha Acústica Jorge Villamil, y en 1980 se inauguró el Coliseo Cubierto 'Álvaro Sánchez Silva', en homenaje al exgobernador del Huila. ",
-              "/escenas/pasillo5.jpeg"
+              "/assets/escenas/pasillo5.jpeg"
             ),
         },
       ],
     },
     pano8: {
       title: "Pasillo museo San Juanero",
-      panorama: "/escenas/mural.jpeg",
+      panorama: "/assets/escenas/mural.jpeg",
       yaw: 0,
       pitch: 0,
       minHfov: 130,
@@ -508,7 +508,7 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "/flechas/derecha.png",
+            icono: "/assets/flechas/derecha.png",
             escenaDestino: "pano3",
           },
         },
@@ -518,7 +518,7 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "/flechas/izquierda.png",
+            icono: "/assets/flechas/izquierda.png",
             escenaDestino: "pano2",
           },
         },
@@ -532,7 +532,7 @@ const viewer = pannellum.viewer("panorama", {
             showModal(
               "REINAS NACIONALES DEL BAMBUCO 1963 AL 2021",
               "",
-              "/escenas/mural.jpeg"
+              "/assets/escenas/mural.jpeg"
             ),
         },
       ],
