@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recorrido Virtual con Guías</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="panorama"></div>
+
+    <!-- Modal para mostrar descripciones e imágenes adicionales -->
+    <div id="infoModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modalTitle"></h2>
+        <p id="modalDescription"></p>
+        <img
+          id="modalImage"
+          src=""
+          alt="Imagen adicional"
+          style="max-width: 100%; max-height: 300px"
+        />
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
+
+<!-- Desarrollado por Juan Pablo Gómez -->
+<!-- Este código es un ejemplo de un recorrido virtual con guías utilizando Pannellum...-->
