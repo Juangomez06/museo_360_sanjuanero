@@ -21,7 +21,7 @@ const viewer = pannellum.viewer("panorama", {
   scenes: {
     pano1: {
       title: "Entrada museo San Juanero",
-      panorama: "{{ asset('assets/img/escenas/entrada.jpeg') }}",
+      panorama: "secure_asset('assets/img/escenas/entrada.jpeg') }}",
       yaw: 0,
       pitch: 0,
       minHfov: 40,
