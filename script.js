@@ -1,6 +1,55 @@
-/*Desarrollado por Juan Pablo Gómez*/
+// Desarrollado por Juan Pablo Gómez
 
-// Inicializar el visor de Pannellum
+// Función para detectar dispositivo y determinar tamaño máximo de textura
+function getMaxTextureSize() {
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  return isMobile ? 8192 : 16384;
+}
+
+// Función para crear hotspots con iconos y texto
+function hotspotIconoConTexto(hotSpotDiv, args) {
+  hotSpotDiv.classList.add("custom-hotspot");
+
+  const icon = document.createElement("img");
+  icon.src = args.icono;
+  icon.alt = "Icono";
+  icon.className = "hotspot-icono";
+  hotSpotDiv.appendChild(icon);
+
+  icon.addEventListener("click", function() {
+    if (args.escenaDestino) {
+      viewer.loadScene(args.escenaDestino);
+    }
+  });
+}
+
+// Función para mostrar el modal con descripción e imagen
+function showModal(title, description, imageSrc) {
+  const modal = document.getElementById("infoModal");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalDescription = document.getElementById("modalDescription");
+  const modalImage = document.getElementById("modalImage");
+
+  modalTitle.innerHTML = title;
+  modalDescription.innerHTML = description;
+  modalImage.src = imageSrc;
+  modal.style.display = "flex";
+}
+
+// Cerrar el modal al hacer clic en la "X"
+document.querySelector(".close").onclick = function () {
+  document.getElementById("infoModal").style.display = "none";
+};
+
+// Cerrar el modal al hacer clic fuera del contenido
+window.onclick = function (event) {
+  const modal = document.getElementById("infoModal");
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+};
+
+// Inicializar el visor de Pannellum con detección de dispositivo
 const viewer = pannellum.viewer("panorama", {
   default: {
     firstScene: "pano1",
@@ -540,44 +589,3 @@ const viewer = pannellum.viewer("panorama", {
   },
 });
 
-function hotspotIconoConTexto(hotSpotDiv, args) {
-  hotSpotDiv.classList.add("custom-hotspot");
-
-  const icon = document.createElement("img");
-  icon.src = args.icono;
-  icon.alt = "Icono";
-  icon.className = "hotspot-icono";
-  hotSpotDiv.appendChild(icon);
-
-  icon.addEventListener("click", function () {
-    if (args.escenaDestino) {
-      viewer.loadScene(args.escenaDestino);
-    }
-  });
-}
-
-// Función para mostrar el modal con descripción e imagen
-function showModal(title, description, imageSrc) {
-  const modal = document.getElementById("infoModal");
-  const modalTitle = document.getElementById("modalTitle");
-  const modalDescription = document.getElementById("modalDescription");
-  const modalImage = document.getElementById("modalImage");
-
-  modalTitle.innerHTML = title;
-  modalDescription.innerHTML = description; // 👈 Este cambio es clave
-  modalImage.src = imageSrc;
-  modal.style.display = "flex";
-}
-
-// Cerrar el modal al hacer clic en la "X"
-document.querySelector(".close").onclick = function () {
-  document.getElementById("infoModal").style.display = "none";
-};
-
-// Cerrar el modal al hacer clic fuera del contenido
-window.onclick = function (event) {
-  const modal = document.getElementById("infoModal");
-  if (event.target === modal) {
-    modal.style.display = "none";
-  }
-};
