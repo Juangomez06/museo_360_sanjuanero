@@ -1,93 +1,118 @@
-// Desarrollado por Juan Pablo Gómez
-
-// Función para detectar dispositivo y determinar tamaño máximo de textura
-function getMaxTextureSize() {
-  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-  return isMobile ? 8192 : 16384;
-}
-
-// Función para crear hotspots con iconos y texto
+// Crea un hospot para mostrar información adicional
+// Este modal se mostrará al hacer clic en ciertos hotspots
 function hotspotIconoConTexto(hotSpotDiv, args) {
+  // Añade clase CSS para estilizar el hotspot
   hotSpotDiv.classList.add("custom-hotspot");
 
+  // Crea elemento de imagen para el icono
   const icon = document.createElement("img");
-  icon.src = args.icono;
-  icon.alt = "Icono";
-  icon.className = "hotspot-icono";
+  icon.src = args.icono; // Establece la fuente del icono
+  icon.alt = "Icono"; // Texto alternativo para accesibilidad
+  icon.className = "hotspot-icono"; // Clase CSS para el icono
+
+  // Añade el icono al contenedor del hotspot
   hotSpotDiv.appendChild(icon);
 
-  icon.addEventListener("click", function() {
+  // Añade evento de clic al icono
+  icon.addEventListener("click", function () {
+    // Si hay una escena destino definida, carga esa escena
     if (args.escenaDestino) {
       viewer.loadScene(args.escenaDestino);
     }
   });
 }
 
-// Función para mostrar el modal con descripción e imagen
+// Muestra un modal con información adicional al hacer clic en un hotspot
 function showModal(title, description, imageSrc) {
+  // Obtiene referencias a los elementos del modal
   const modal = document.getElementById("infoModal");
   const modalTitle = document.getElementById("modalTitle");
   const modalDescription = document.getElementById("modalDescription");
   const modalImage = document.getElementById("modalImage");
 
+  // Establece el contenido del modal
   modalTitle.innerHTML = title;
   modalDescription.innerHTML = description;
   modalImage.src = imageSrc;
+
+  // Muestra el modal (usando flex para centrarlo)
   modal.style.display = "flex";
 }
 
-// Cerrar el modal al hacer clic en la "X"
+// EVENTO PARA CERRAR EL MODAL AL HACER CLIC EN LA "X"
 document.querySelector(".close").onclick = function () {
   document.getElementById("infoModal").style.display = "none";
 };
 
-// Cerrar el modal al hacer clic fuera del contenido
+// EVENTO PARA CERRAR EL MODAL AL HACER CLIC FUERA DEL CONTENIDO
 window.onclick = function (event) {
   const modal = document.getElementById("infoModal");
+  // Si el clic fue directamente en el fondo del modal (no en su contenido)
   if (event.target === modal) {
     modal.style.display = "none";
   }
 };
 
-// Inicializar el visor de Pannellum con detección de dispositivo
+// INICIALIZACIÓN DEL VISOR PANNELLUM
 const viewer = pannellum.viewer("panorama", {
+  // CONFIGURACIÓN POR DEFECTO PARA TODAS LAS ESCENAS
   default: {
-    firstScene: "pano1",
-    sceneFadeDuration: 1000,
-    autoLoad: true,
-    type: "equirectangular",
-    minHfov: 30,
-    maxHfov: 130,
-    hfov: 200,
-    pitch: 0,
-    minPitch: -45,
-    maxPitch: 45,
-    minYaw: -150,
-    maxYaw: 170,
-    autoRotate: -2,
-    showControls: true,
+    firstScene: "pano1", // Escena que se carga inicialmente
+    sceneFadeDuration: 1000, // Duración de la transición entre escenas (ms)
+    autoLoad: true, // Carga automáticamente la primera escena
+    type: "equirectangular", // Tipo de proyección para panoramas 360°
+
+    // Configuración de zoom (campo de visión horizontal)
+    minHfov: 30, // Zoom máximo (grados)
+    maxHfov: 130, // Zoom mínimo (grados)
+    hfov: 200, // Zoom inicial
+
+    // Configuración de rotación vertical (pitch)
+    pitch: 0, // Ángulo vertical inicial
+    minPitch: -45, // Límite inferior de rotación vertical
+    maxPitch: 45, // Límite superior de rotación vertical
+
+    // Configuración de rotación horizontal (yaw)
+    minYaw: -150, // Límite izquierdo de rotación horizontal
+    maxYaw: 170, // Límite derecho de rotación horizontal
+
+    autoRotate: -2, // Velocidad de rotación automática (negativo = antihorario)
+    showControls: true, // Muestra los controles de navegación
   },
+
+  // DEFINICIÓN DE ESCENAS DEL TOUR VIRTUAL
   scenes: {
+    // PRIMERA ESCENA - ENTRADA DEL MUSEO
     pano1: {
-      title: "Entrada museo San Juanero",
-      panorama: "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/escenas/entrada.jpeg",
-      yaw: 0,
-      pitch: 0,
+      title: "Entrada museo San Juanero", // Título de la escena
+      panorama:
+        "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/escenas/entrada.jpeg", // URL de la imagen 360°
+
+      // Configuración de vista inicial
+      yaw: 0, // Rotación horizontal inicial
+      pitch: 0, // Rotación vertical inicial
+      hfov: 200, // Campo de visión horizontal inicial
+
+      // Límites de zoom para esta escena
       minHfov: 40,
       maxHfov: 135,
-      hfov: 200,
+
+      // DEFINICIÓN DE HOTSPOTS (puntos interactivos)
       hotSpots: [
         {
-          pitch: 200,
-          yaw: 110,
-          type: "custom",
-          createTooltipFunc: hotspotIconoConTexto,
+          pitch: 200, // Posición vertical del hotspot
+          yaw: 110, // Posición horizontal del hotspot
+          type: "custom", // Tipo personalizado
+          createTooltipFunc: hotspotIconoConTexto, // Función para crear el hotspot
           createTooltipArgs: {
-            icono: "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/arriba.png",
-            escenaDestino: "pano2",
+            // Argumentos para la función
+            icono:
+              "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/arriba.png", // Icono del hotspot
+            escenaDestino: "pano2", // Escena a cargar al hacer clic
           },
         },
         {
+          // Hotspot informativo (museo)
           pitch: 150,
           yaw: 220,
           type: "info",
@@ -104,7 +129,8 @@ const viewer = pannellum.viewer("panorama", {
     },
     pano2: {
       title: "Pasillo museo San Juanero",
-      panorama: "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/escenas/pasillo1.jpg",
+      panorama:
+        "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/escenas/pasillo1.jpg",
       yaw: 0,
       pitch: 0,
       minHfov: 40,
@@ -117,7 +143,8 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/arriba.png",
+            icono:
+              "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/arriba.png",
             escenaDestino: "pano3",
           },
         },
@@ -127,7 +154,8 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/izquierda.png",
+            icono:
+              "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/izquierda.png",
             escenaDestino: "pano1",
           },
         },
@@ -148,7 +176,8 @@ const viewer = pannellum.viewer("panorama", {
     },
     pano3: {
       title: "Pasillo museo San Juanero",
-      panorama: "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/escenas/salon.jpg",
+      panorama:
+        "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/escenas/salon_com.png",
       yaw: 0,
       pitch: 0,
       minHfov: 30,
@@ -161,7 +190,8 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/izquierda.png",
+            icono:
+              "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/izquierda.png",
             escenaDestino: "pano4",
           },
         },
@@ -171,7 +201,8 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/derecha.png",
+            icono:
+              "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/derecha.png",
             escenaDestino: "pano5",
           },
         },
@@ -181,7 +212,8 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/abajo.png",
+            icono:
+              "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/abajo.png",
             escenaDestino: "pano2",
           },
         },
@@ -191,7 +223,8 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/arriba.png",
+            icono:
+              "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/arriba.png",
             escenaDestino: "pano6",
           },
         },
@@ -199,7 +232,8 @@ const viewer = pannellum.viewer("panorama", {
     },
     pano4: {
       title: "Pasillo museo San Juanero",
-      panorama: "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/escenas/musica.jpeg",
+      panorama:
+        "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/escenas/musica.jpeg",
       yaw: 0,
       pitch: 0,
       minHfov: 30,
@@ -212,7 +246,8 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/derecha.png",
+            icono:
+              "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/derecha.png",
             escenaDestino: "pano5",
           },
         },
@@ -222,7 +257,8 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/izquierda.png",
+            icono:
+              "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/izquierda.png",
             escenaDestino: "pano3",
           },
         },
@@ -269,7 +305,8 @@ const viewer = pannellum.viewer("panorama", {
     },
     pano5: {
       title: "Pasillo museo San Juanero",
-      panorama: "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/escenas/trajes.jpeg",
+      panorama:
+        "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/escenas/trajes.jpeg",
       yaw: 0,
       pitch: 0,
       minHfov: 30,
@@ -282,7 +319,8 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/derecha.png",
+            icono:
+              "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/derecha.png",
             escenaDestino: "pano6",
           },
         },
@@ -292,7 +330,8 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/izquierda.png",
+            icono:
+              "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/izquierda.png",
             escenaDestino: "pano3",
           },
         },
@@ -352,7 +391,8 @@ const viewer = pannellum.viewer("panorama", {
     },
     pano6: {
       title: "Pasillo museo San Juanero",
-      panorama: "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/escenas/pasos.jpeg",
+      panorama:
+        "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/escenas/pasos.jpeg",
       yaw: 0,
       pitch: 0,
       minHfov: 30,
@@ -365,7 +405,8 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/derecha.png",
+            icono:
+              "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/derecha.png",
             escenaDestino: "pano7",
           },
         },
@@ -375,7 +416,8 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/izquierda.png",
+            icono:
+              "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/izquierda.png",
             escenaDestino: "pano3",
           },
         },
@@ -500,7 +542,8 @@ const viewer = pannellum.viewer("panorama", {
     },
     pano7: {
       title: "Pasillo museo San Juanero",
-      panorama: "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/escenas/pasillo5.jpeg",
+      panorama:
+        "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/escenas/pasillo5.jpeg",
       yaw: 0,
       pitch: 0,
       minHfov: 130,
@@ -513,7 +556,8 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/derecha.png",
+            icono:
+              "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/derecha.png",
             escenaDestino: "pano8",
           },
         },
@@ -523,7 +567,8 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/izquierda.png",
+            icono:
+              "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/izquierda.png",
             escenaDestino: "pano6",
           },
         },
@@ -544,7 +589,8 @@ const viewer = pannellum.viewer("panorama", {
     },
     pano8: {
       title: "Pasillo museo San Juanero",
-      panorama: "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/escenas/mural.jpeg",
+      panorama:
+        "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/escenas/mural.jpeg",
       yaw: 0,
       pitch: 0,
       minHfov: 130,
@@ -557,7 +603,8 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/derecha.png",
+            icono:
+              "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/derecha.png",
             escenaDestino: "pano3",
           },
         },
@@ -567,7 +614,8 @@ const viewer = pannellum.viewer("panorama", {
           type: "custom",
           createTooltipFunc: hotspotIconoConTexto,
           createTooltipArgs: {
-            icono: "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/izquierda.png",
+            icono:
+              "https://raw.githubusercontent.com/Juangomez06/museo_360_sanjuanero/refs/heads/main/assets/img/flechas/izquierda.png",
             escenaDestino: "pano2",
           },
         },
@@ -588,4 +636,3 @@ const viewer = pannellum.viewer("panorama", {
     },
   },
 });
-
